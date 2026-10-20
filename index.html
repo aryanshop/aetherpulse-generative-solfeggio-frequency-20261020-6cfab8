@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherPulse: Solfeggio & Binaural Sound Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="brand">
+                <div class="logo-pulse"></div>
+                <h1>AetherPulse</h1>
+            </div>
+            <p class="subtitle">Solferggio Frequency & Binaural Entrainment Synthesizer</p>
+            <div class="master-controls">
+                <button id="global-play-btn" class="btn btn-primary" aria-label="Start Audio Engine">
+                    <span class="play-icon">▶</span> <span id="play-text">Start Session</span>
+                </button>
+                <div class="volume-control">
+                    <label for="master-vol">Master Volume</label>
+                    <input type="range" id="master-vol" min="0" max="1" step="0.01" value="0.4">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-grid">
+            <!-- Left Column: Visualizer & Timer -->
+            <section class="visualizer-section card">
+                <div class="card-header">
+                    <h2>Cymatic Visualizer</h2>
+                    <div class="badge" id="active-freq-badge">Idle</div>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="cymatic-canvas" width="500" height="500"></canvas>
+                    <div class="visualizer-overlay">
+                        <div class="timer-display" id="timer-display">00:00</div>
+                        <div class="timer-controls">
+                            <button id="timer-toggle" class="btn btn-sm">Start Timer</button>
+                            <button id="timer-reset" class="btn btn-sm btn-outline">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="visualizer-settings">
+                    <label>Visual Mode:
+                        <select id="visual-mode">
+                            <option value="mandala">Sacred Mandala</option>
+                            <option value="waveform">Harmonic Wave</option>
+                            <option value="particles">Aether Particles</option>
+                        </select>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Right Column: Synthesizer Channels & Presets -->
+            <section class="control-section">
+                <!-- Presets -->
+                <div class="card presets-card">
+                    <h3>Acoustic Presets</h3>
+                    <div class="preset-buttons">
+                        <button class="btn btn-preset" data-preset="deep-focus">Deep Focus (528Hz + Alpha)</button>
+                        <button class="btn btn-preset" data-preset="deep-sleep">Deep Sleep (432Hz + Delta)</button>
+                        <button class="btn btn-preset" data-preset="pineal-activation">Pineal Awakening (963Hz)</button>
+                        <button class="btn btn-preset" data-preset="chakra-balance">Root Grounding (396Hz)</button>
+                        <button class="btn btn-preset" data-preset="clear">Reset All</button>
+                    </div>
+                </div>
+
+                <!-- Solfeggio Generator -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Solfeggio Tone Generator</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="solfeggio-enable" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="channel-body">
+                        <div class="freq-selector">
+                            <button class="freq-btn active" data-freq="396">396 Hz<span class="freq-desc">Liberation</span></button>
+                            <button class="freq-btn" data-freq="417">417 Hz<span class="freq-desc">Change</span></button>
+                            <button class="freq-btn" data-freq="528">528 Hz<span class="freq-desc">Transformation</span></button>
+                            <button class="freq-btn" data-freq="639">639 Hz<span class="freq-desc">Connection</span></button>
+                            <button class="freq-btn" data-freq="741">741 Hz<span class="freq-desc">Intuition</span></button>
+                            <button class="freq-btn" data-freq="852">852 Hz<span class="freq-desc">Spiritual Order</span></button>
+                            <button class="freq-btn" data-freq="963">963 Hz<span class="freq-desc">Divine Crown</span></button>
+                        </div>
+                        <div class="slider-group">
+                            <label>Tone Volume: <span id="solfeggio-vol-val">50%</span></label>
+                            <input type="range" id="solfeggio-vol" min="0" max="1" step="0.01" value="0.5">
+                        </div>
+                        <div class="waveform-select">
+                            <label>Waveform: 
+                                <select id="solfeggio-wave">
+                                    <option value="sine">Sine (Pure)</option>
+                                    <option value="triangle">Triangle (Soft)</option>
+                                    <option value="sine">Warm Harmonic</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Binaural Beats -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Binaural Brainwave Entrainment</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="binaural-enable">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="channel-body">
+                        <div class="carrier-group">
+                            <label>Carrier Frequency: <span id="carrier-val">200</span> Hz</label>
+                            <input type="range" id="carrier-freq" min="100" max="400" step="1" value="200">
+                        </div>
+                        <div class="brainwave-buttons">
+                            <button class="bwave-btn" data-beat="2">Delta (2Hz - Sleep)</button>
+                            <button class="bwave-btn active" data-beat="6">Theta (6Hz - Deep Meditation)</button>
+                            <button class="bwave-btn" data-beat="10">Alpha (10Hz - Calm Focus)</button>
+                            <button class="bwave-btn" data-beat="18">Beta (18Hz - Active Work)</button>
+                        </div>
+                        <div class="slider-group">
+                            <label>Binaural Volume: <span id="binaural-vol-val">30%</span></label>
+                            <input type="range" id="binaural-vol" min="0" max="1" step="0.01" value="0.3">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>AetherPulse &bull; Pure Web Audio API Synthesizer &bull; No external assets required.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
